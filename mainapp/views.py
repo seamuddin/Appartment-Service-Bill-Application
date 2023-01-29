@@ -8,3 +8,6 @@ def index(request,**kwargs):
 
 def login(request,**kwargs):
     return render(request,'login/login.html')
+
+def loginview(request,**kwargs):
+    return render(request, 'dashboard/index.html')
