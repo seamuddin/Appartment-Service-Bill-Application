@@ -38,6 +38,52 @@
 
                 </li>
 
+                 <!-- Member Nav -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p> Member <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'member_add' %}" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Member Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/member" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Member List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Flat Nav -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-house-user"></i>
+                        <p> Flat <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'flat_add' %}" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Flat Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/charts/flot.html" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Flat List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
                 <!-- Tanent Nav -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -60,26 +106,6 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p> Member <i class="right fas fa-angle-left"></i></p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
-                                <p>Member Add</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
-                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
-                                <p>Member List</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
 
             </ul>
