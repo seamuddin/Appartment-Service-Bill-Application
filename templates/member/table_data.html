@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th style="width: 10px">#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>NID</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for member in member %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.mobile }}</td>
+            <td>{{ member.parmanent_address }}</td>
+            <td>{{ member.nid }}</td>
+            <td class="text-center">
+                <span href="" class="p-2" onclick="delete_item('/member/delete/{{ member.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
+                <a href=""><i class="fas fa-edit" onclick="edit_item()"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

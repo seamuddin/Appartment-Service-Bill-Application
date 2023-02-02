@@ -1,6 +1,17 @@
 {% extends 'dashboard/index.html' %}
-
+{% load static %}
 {% block content %}
+    <style>
+  ::-webkit-scrollbar {
+  display: none;
+    }
+.table-main
+{
+        overflow: scroll;
+    min-height: 475px;
+}
+
+    </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -24,6 +35,9 @@
 
         <section class="content">
             <div class="container-fluid">
+                <div style="display:none" id="alert-success" class="alert alert-success" role="alert">
+                    This is a primary alert—check it out!
+                </div>
                 <!-- Small boxes (Stat box) -->
 
 
@@ -35,35 +49,15 @@
               <div class="card-header">
                 <h3 class="card-title">Members List</h3>
               </div>
+                                <div id="loading" class="loading">
+                        <img src="{% static 'img/spinning.gif'%} " alt="">
+                    </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                        <th>Mobile</th>
-                      <th>Address</th>
-                      <th>NID</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {% for member in member %}
-                      <tr>
-                      <td>{{ forloop.counter }}</td>
-                      <td>{{ member.name }}</td>
-                      <td>{{ member.email }}</td>
-                      <td>{{ member.mobile }}</td>
-                      <td>{{ member.parmanent_address }}</td>
-                      <td>{{ member.nid }}</td>
-                      <td></td>
-                    </tr>
-                  {% endfor %}
+              <div class="card-body table-main" id="table_info">
 
-                  </tbody>
-                </table>
+
+
+
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
@@ -84,4 +78,61 @@
         </section>
         <!-- /.content -->
     </div>
+
+
+
+
+{% endblock %}
+
+{% block content_js %}
+     <script>
+     $( document ).ready(function() {
+    $('#alert-success').hide()
+});
+
+
+     function table_info(){
+         $('#loading').show();
+        var table_info = $('#table_info');
+        $.ajax({
+            url: '/member/members',
+            datatype: "html",
+            type: "get",
+            success: function (data) {
+                table_info.html(data);
+                setTimeout(function () {
+                    $('#loading').hide();
+                }, 500);
+            }
+        })
+
+ };
+
+
+     table_info()
+
+     function delete_item(url) {
+
+         $(this).preventDefault
+         $.ajax({
+            url: url,
+            datatype: "json",
+            type: "get",
+            success: function (data) {
+               if(data.status = true)
+               {
+                $('#alert-success').text(data.message);
+                $('#alert-success').show()
+                   $('#alert-success').animate({'marginLeft' : "+=30px" //moves up
+		});
+                   setTimeout(function () {
+                    $('#alert-success').hide();
+                }, 900);
+                   table_info()
+               }
+            }
+        })
+     }
+
+    </script>
 {% endblock %}

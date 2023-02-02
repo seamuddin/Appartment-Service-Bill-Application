@@ -11,10 +11,10 @@ class Member(models.Model):
     parmanent_address = models.CharField(max_length=100)
     nid = models.CharField(max_length=100)
 
-    def save(self, force_insert=False, force_update=False):
-        if len(self.name) > 5:
-            raise ValidationError('Invalid value of field1')
-        # this can, of course, be made more generic
-        models.Model.save(self, force_insert, force_update)
+    # def save(self, force_insert=False, force_update=False):
+    #     if len(self.name) > 5:
+    #         raise ValidationError('Name must be greater than 4 character')
+    #     # this can, of course, be made more generic
+    #     models.Model.save(self, force_insert, force_update)
 
 

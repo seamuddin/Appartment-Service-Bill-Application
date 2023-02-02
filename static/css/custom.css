@@ -1,0 +1,20 @@
+.loading {
+        position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    left: 0px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.alert-success
+{
+           position: absolute!important;
+    z-index: 9999;
+    min-width: 100px;
+    -webkit-transition: all 0.5s ease-out;
+    top: 7%;
+    left: 45%;
+}

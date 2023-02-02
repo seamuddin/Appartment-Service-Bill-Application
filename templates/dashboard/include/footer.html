@@ -33,5 +33,30 @@
 <script src="{% static 'dist/js/demo.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+
+ <script>
+     function table_info(){
+         $('#loading').show();
+        var table_info = $('#table_info');
+        $.ajax({
+            url: '/member/members',
+            datatype: "html",
+            type: "get",
+            success: function (data) {
+                table_info.html(data);
+                setTimeout(function () {
+                    $('#loading').hide();
+                }, 500);
+            }
+        })
+
+ };
+     table_info()
+
+    </script>
+
+{% block jscode %} {% endblock %}
 </body>
 </html>
+
+

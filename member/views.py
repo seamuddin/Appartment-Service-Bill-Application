@@ -2,13 +2,34 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 from .models import *
 from django.core.exceptions import ValidationError
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 @login_required(login_url='login')
-def index(request):
+def index(request,**kwargs):
     context = {}
     context['member'] = Member.objects.all()
-    return render(request, 'member/index.html',context=context)
+    return render(request, 'member/index.html',context=context)\
+
+
+@login_required(login_url='login')
+def delete(request, member_id, **kwargs):
+
+    member = Member.objects.get(id=member_id)
+    member.delete()
+    response_data = {}
+    response_data['result'] = 'done'
+    response_data['message'] = 'Member Deleted SuccessFully'
+    response_data['status'] = True
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+# Create your views here.
+@login_required(login_url='login')
+def members_data(request, **kwargs):
+    context = {}
+    context['member'] = Member.objects.all()
+    return render(request, 'member/table_data.html',context=context)
 
 
 
