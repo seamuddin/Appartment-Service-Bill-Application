@@ -18,3 +18,10 @@
     top: 7%;
     left: 45%;
 }
+
+.custom-modal
+{
+        position: absolute!important;
+    z-index: 99;
+    top: 10%;
+}

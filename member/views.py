@@ -10,7 +10,7 @@ import json
 def index(request,**kwargs):
     context = {}
     context['member'] = Member.objects.all()
-    return render(request, 'member/index.html',context=context)\
+    return render(request, 'member/index.html',context=context)
 
 
 @login_required(login_url='login')
@@ -23,6 +23,13 @@ def delete(request, member_id, **kwargs):
     response_data['message'] = 'Member Deleted SuccessFully'
     response_data['status'] = True
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def edit(request,member_id, **kwargs):
+    member = Member.objects.get(id=member_id)
+    context = {}
+    context['member'] = member
+    return render(request, 'member/edit.html',context=context)
 
 # Create your views here.
 @login_required(login_url='login')
@@ -41,7 +48,7 @@ def add(request,**kwargs):
             member.email = request.POST.get('email')
             member.name = request.POST.get('name')
             member.mobile = request.POST.get('mobile')
-            member.parmanent_address = request.POST.get('parmenent_address')
+            member.parmanent_address = request.POST.get('parmanent_address')
             member.nid = request.POST.get('nid')
             member.save()
             return redirect('/member')

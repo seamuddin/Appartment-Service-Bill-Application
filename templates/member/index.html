@@ -40,7 +40,12 @@
                 </div>
                 <!-- Small boxes (Stat box) -->
 
+            <div class="row justify-content-center">
+                <div class="col-md-4 custom-modal" id="edit_form">
 
+                </div>
+
+            </div>
                 <div class="row justify-content-center">
 
                     <section class="col-lg-8 connectedSortable">
@@ -49,15 +54,13 @@
               <div class="card-header">
                 <h3 class="card-title">Members List</h3>
               </div>
-                                <div id="loading" class="loading">
+                    <div id="loading" class="loading">
                         <img src="{% static 'img/spinning.gif'%} " alt="">
                     </div>
+
+
               <!-- /.card-header -->
               <div class="card-body table-main" id="table_info">
-
-
-
-
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
@@ -106,7 +109,7 @@
             }
         })
 
- };
+        };
 
 
      table_info()
@@ -133,6 +136,51 @@
             }
         })
      }
+
+    function  edit_item(url) {
+
+         var edit_form = $('#edit_form');
+         edit_form.show()
+        $.ajax({
+            url: url,
+            datatype: "html",
+            type: "get",
+            success: function (data) {
+                edit_form.html(data);
+
+                $("#edit_cancel").click(function (event) {
+                    event.preventDefault
+                    event.stopPropagation
+                    $('#edit_form').hide()
+
+
+
+                })
+            }
+        })
+
+    }
+    
+    $("#member_submit").click(function () {
+        $(this).preventDefault
+
+
+        $.ajax({
+            url: '/member/members',
+            datatype: "html",
+            type: "get",
+            success: function (data) {
+                table_info.html(data);
+                setTimeout(function () {
+                    $('#loading').hide();
+                }, 500);
+            }
+        })
+
+
+
+    })
+
 
     </script>
 {% endblock %}

@@ -21,7 +21,7 @@
             <td>{{ member.nid }}</td>
             <td class="text-center">
                 <span href="" class="p-2" onclick="delete_item('/member/delete/{{ member.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
-                <a href=""><i class="fas fa-edit" onclick="edit_item()"></i></a>
+                <span href="" onclick="edit_item('edit/{{ member.id }}')"><i class="fas fa-edit"></i></span>
             </td>
         </tr>
     {% endfor %}
