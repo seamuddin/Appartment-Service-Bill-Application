@@ -1,0 +1,205 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table-main {
+            overflow: scroll;
+            min-height: 475px;
+        }
+
+    </style>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Tanent</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Tanent</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+
+        <section class="content">
+            <div class="container-fluid">
+                <div style="display:none" id="alert-success" class="alert alert-success" role="alert">
+                    This is a primary alert—check it out!
+                </div>
+                <!-- Small boxes (Stat box) -->
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-4 custom-modal" id="edit_form">
+
+
+                    </div>
+
+                </div>
+                <div class="row justify-content-center">
+
+                    <section class="col-lg-8 connectedSortable">
+                        <!-- /.card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Tanent List</h3>
+                            </div>
+                            <div id="loading" class="loading">
+                                <img src="{% static 'img/spinning.gif' %} " alt="">
+                            </div>
+
+
+                            <!-- /.card-header -->
+                            <div class="card-body table-main" id="table_info">
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                                <ul class="pagination pagination-sm m-0 float-right">
+                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </section>
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block content_js %}
+    <script>
+        $(document).ready(function () {
+            $('#alert-success').hide()
+        });
+
+
+        function table_info() {
+            $('#loading').show();
+            var table_info = $('#table_info');
+            $.ajax({
+                url: '/tanent/tanents',
+                datatype: "html",
+                type: "get",
+                success: function (data) {
+                    table_info.html(data);
+                    setTimeout(function () {
+                        $('#loading').hide();
+                    }, 500);
+                }
+            })
+
+        };
+
+
+        table_info()
+
+        function delete_item(url) {
+
+            $(this).preventDefault
+            $.ajax({
+                url: url,
+                datatype: "json",
+                type: "get",
+                success: function (data) {
+                    if (data.status = true) {
+                        $('#alert-success').text(data.message);
+                        $('#alert-success').show()
+                        $('#alert-success').animate({
+                            'marginLeft': "+=30px" //moves up
+                        });
+                        setTimeout(function () {
+                            $('#alert-success').hide();
+                        }, 900);
+                        table_info()
+                    }
+                }
+            })
+        }
+
+        function edit_item(url) {
+
+
+            var edit_form = $('#edit_form');
+            edit_form.show()
+            $.ajax({
+                url: url,
+                datatype: "html",
+                type: "get",
+                success: function (data) {
+                    edit_form.html(data);
+                    setTimeout(function () {
+                            $('#form_loading').hide();
+                        }, 300);
+
+                    $("#edit_cancel").click(function (event) {
+                        event.preventDefault
+                        event.stopPropagation
+                        $('#edit_form').hide()
+                        table_info()
+                    })
+
+
+
+
+                }
+            })
+
+        }
+
+        function edit_form_data(url) {
+            $(this).stopPropagation
+                        $('#form_loading').show()
+                        setTimeout(function () {
+                            $('#form_loading').hide();
+                        }, 500);
+                        $.ajax({
+                            url: url,
+                            datatype: "html",
+                            data: $("#edit_form_main").serializeArray(),
+                            type: "post",
+                            success: function (data) {
+                                $('#form_loading').show()
+                                    $('#edit_form').html(data);
+                                setTimeout(function () {
+                                    $('#form_loading').hide();
+                                }, 500);
+
+                                $("#edit_cancel").click(function (event) {
+                                event.preventDefault
+                                event.stopPropagation
+                                $('#edit_form').hide()
+                                    table_info()
+                                })
+
+                            }
+                        })
+
+
+                    }
+
+
+    </script>
+{% endblock %}

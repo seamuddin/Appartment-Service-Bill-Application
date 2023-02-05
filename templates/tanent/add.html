@@ -1,0 +1,113 @@
+{% extends 'dashboard/index.html' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Member</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Member</li>
+                            <li class="breadcrumb-item active">Add</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+
+
+                <div class="row justify-content-center">
+
+                    <section class="col-lg-5 connectedSortable">
+                        <!-- /.card -->
+                        <!-- Horizontal Form -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Tanent</h3>
+                            </div>
+
+                            <strong class="text-center mt-2 text-danger">{{ error }}</strong>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form class="form-horizontal" method="post">
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Flat</label>
+                                        <select class="custom-select" name="flat">
+                                            {% for flat in flat %}
+                                            <option value="{{ flat.id }}">{{ flat.flat_no }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name :</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="inputEmail3"
+                                                   placeholder="John Doe" name="name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Email :</label>
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="inputPassword3"
+                                                   placeholder="example@gmail.com" name="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Mobile :</label>
+                                        <div class="col-sm-12">
+                                            <input type="Number" class="form-control" id="inputPassword3"
+                                                   placeholder="+88018000000000" name="mobile">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Parmanent Address :</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="inputPassword3"
+                                                   placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">NID :</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="inputPassword3"
+                                                   placeholder="0295720000" name="nid">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info float-right">Save</button>
+
+                                </div>
+                                <!-- /.card-footer -->
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </section>
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}

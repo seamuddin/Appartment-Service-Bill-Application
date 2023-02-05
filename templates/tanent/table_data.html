@@ -1,0 +1,35 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th style="width: 10px">#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>NID</th>
+        <th>Flat</th>
+        <th>Bill</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tanent in tanent %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ tanent.name }}</td>
+            <td>{{ tanent.email }}</td>
+            <td>{{ tanent.mobile }}</td>
+            <td>{{ tanent.parmanent_address }}</td>
+            <td>{{ tanent.nid }}</td>
+            <td>{{ tanent.flat.flat_no }}</td>
+                        <td class="text-center"><a href=""><i class="fas fa-wallet"></i></a></td>
+
+
+            <td class="text-center">
+                <span href="" class="p-2" onclick="delete_item('/tanent/delete/{{ tanent.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
+                <span href="" onclick="edit_item('edit/{{ tanent.id }}')"><i class="fas fa-edit"></i></span>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
