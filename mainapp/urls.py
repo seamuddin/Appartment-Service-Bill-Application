@@ -6,4 +6,5 @@ urlpatterns = [
     path('dashboard/',views.index,name='dashboard'),
     path('login/', LoginView.as_view(template_name='login/login.html'), name='login'),
 
+
 ]

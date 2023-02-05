@@ -54,7 +54,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Members List</h3>
+                                <h3 class="card-title">Flat List</h3>
                             </div>
                             <div id="loading" class="loading">
                                 <img src="{% static 'img/spinning.gif' %} " alt="">
@@ -100,7 +100,7 @@
             $('#loading').show();
             var table_info = $('#table_info');
             $.ajax({
-                url: '/member/members',
+                url: '/flat/flats',
                 datatype: "html",
                 type: "get",
                 success: function (data) {

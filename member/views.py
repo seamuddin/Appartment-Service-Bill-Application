@@ -25,7 +25,31 @@ def delete(request, member_id, **kwargs):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
+@login_required(login_url='login')
 def edit(request,member_id, **kwargs):
+    if request.POST:
+        try:
+            member = Member.objects.get(id=member_id)
+            member.email = request.POST.get('email')
+            member.name = request.POST.get('name')
+            member.mobile = request.POST.get('mobile')
+            member.parmanent_address = request.POST.get('parmanent_address')
+            member.nid = request.POST.get('nid')
+            member.save()
+            context = {}
+            context['member'] = member
+            return render(request, 'member/edit.html', context=context)
+
+        except ValidationError as e:
+            context = {}
+            request.POST._mutable = True
+            request.POST['id'] = member_id
+            context['member'] = request.POST
+            context['error'] = str(e.message)
+            print(e.message)
+            return render(request, 'member/edit.html', context)
+
+
     member = Member.objects.get(id=member_id)
     context = {}
     context['member'] = member
@@ -50,13 +74,15 @@ def add(request,**kwargs):
             member.mobile = request.POST.get('mobile')
             member.parmanent_address = request.POST.get('parmanent_address')
             member.nid = request.POST.get('nid')
+            member.full_clean()
             member.save()
             return redirect('/member')
 
         except ValidationError as e:
             context = {}
-            context['member'] = member.__dict__
-            context['error'] = str(e.message)
+            request.POST._mutable = True
+            context['member'] = request.POST
+            context['error'] = str(e.message_dict)
             return render(request, 'member/add.html', context)
     return render(request, 'member/add.html')
 

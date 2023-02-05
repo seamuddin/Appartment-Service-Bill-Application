@@ -1,0 +1,25 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th style="width: 10px">#</th>
+        <th>Flat Number</th>
+        <th>Flat Size</th>
+        <th>Owner</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for flat in flat %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ flat.flat_no }}</td>
+            <td>{{ flat.size }}</td>
+            <td>{{ flat.owner.name }}</td>
+            <td class="text-center">
+                <span href="" class="p-2" onclick="delete_item('/flat/delete/{{ flat.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
+                <span href="" onclick="edit_item('edit/{{ flat.id }}')"><i class="fas fa-edit"></i></span>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

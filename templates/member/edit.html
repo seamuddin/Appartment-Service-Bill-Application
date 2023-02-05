@@ -1,57 +1,66 @@
-        <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Member Edit</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form>
-                <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Name :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputEmail3"
-                                                   placeholder="John Doe" name="name" value="{{ member.name }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-4 col-form-label">Email :</label>
-                                        <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="inputPassword3"
-                                                   placeholder="example@gmail.com" name="email" value="{{ member.email }}">
-                                        </div>
-                                    </div>
+{% load static %}
+<div class="card card-primary">
 
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-4 col-form-label">Mobile :</label>
-                                        <div class="col-sm-12">
-                                            <input type="Number" class="form-control" id="inputPassword3"
-                                                   placeholder="+88018000000000" name="mobile" value="{{ member.mobile }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-4 col-form-label">Parmanent Address :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputPassword3"
-                                                   placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address" value="{{ member.parmanent_address }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-4 col-form-label">NID :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputPassword3"
-                                                   placeholder="0295720000" name="nid" value="{{ member.nid }}">
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" id="member_submit" class="btn btn-primary">Submit</button>
-                   <span type="submit" id="edit_cancel" class="btn btn-primary float-right">Cancel</span>
+    <div id="form_loading" class="loading">
+                                <img src="{% static 'img/spinning.gif' %} " alt="">
+                            </div>
+    <div class="card-header">
+        <h3 class="card-title">Member Edit</h3>
+    </div>
+    <strong class="text-center mt-2 text-danger">{{ error }}</strong>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form id="edit_form_main">
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-4 col-form-label">Name :</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputEmail3"
+                           placeholder="John Doe" name="name" value="{{ member.name }}">
                 </div>
-              </form>
             </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-4 col-form-label">Email :</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="inputPassword3"
+                           placeholder="example@gmail.com" name="email" value="{{ member.email }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-4 col-form-label">Mobile :</label>
+                <div class="col-sm-12">
+                    <input type="Number" class="form-control" id="inputPassword3"
+                           placeholder="+88018000000000" name="mobile" value="{{ member.mobile }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-4 col-form-label">Parmanent Address :</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputPassword3"
+                           placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address"
+                           value="{{ member.parmanent_address }}">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-4 col-form-label">NID :</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="inputPassword3"
+                           placeholder="0295720000" name="nid" value="{{ member.nid }}">
+                </div>
+            </div>
+
+
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <span class="btn btn-primary" onclick="edit_form_data('/member/edit/{{ member.id }}')">Submit</span>
+
+            <span id="edit_cancel" class="btn btn-primary float-right" >Cancel</span>
+        </div>
+    </form>
+</div>
