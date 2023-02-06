@@ -62,7 +62,12 @@ def edit(request,tanent_id, **kwargs):
 @login_required(login_url='login')
 def tanent_data(request, **kwargs):
     context = {}
-    context['tanent'] = Tanent.objects.all()
+    if request.GET.get('name'):
+        tanent = Tanent.objects.filter(name__contains = request.GET.get('name'))
+        # print(tanent.query.__str__())
+    else:
+        tanent = Tanent.objects.all()
+    context['tanent'] = tanent
     return render(request, 'tanent/table_data.html',context=context)
 
 
@@ -86,6 +91,7 @@ def add(request,**kwargs):
             context = {}
             request.POST._mutable = True
             context['tanent'] = request.POST
+            context['flat'] = Flat.objects.all()
             context['error'] = str(e.message_dict)
             return render(request, 'tanent/add.html', context)
     context = {'flat': Flat.objects.all()}

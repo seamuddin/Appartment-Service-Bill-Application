@@ -50,7 +50,7 @@
                 </div>
                 <div class="row justify-content-center">
 
-                    <section class="col-lg-8 connectedSortable">
+                    <section class="col-lg-10 connectedSortable">
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
@@ -102,29 +102,24 @@
             $('#alert-success').hide()
         });
 
-
         function table_info() {
             $('#loading').show();
-            var table_info = $('#table_info');
+            var table_infos = $('#table_info');
             $.ajax({
                 url: '/tanent/tanents',
                 datatype: "html",
                 type: "get",
                 success: function (data) {
-                    table_info.html(data);
+                    table_infos.html(data);
                     setTimeout(function () {
                         $('#loading').hide();
                     }, 500);
                 }
             })
-
         };
-
-
         table_info()
 
         function delete_item(url) {
-
             $(this).preventDefault
             $.ajax({
                 url: url,
@@ -147,8 +142,6 @@
         }
 
         function edit_item(url) {
-
-
             var edit_form = $('#edit_form');
             edit_form.show()
             $.ajax({
@@ -160,18 +153,14 @@
                     setTimeout(function () {
                         $('#form_loading').hide();
                     }, 300);
-
                     $("#edit_cancel").click(function (event) {
                         event.preventDefault
                         event.stopPropagation
                         $('#edit_form').hide()
                         table_info()
                     })
-
-
                 }
             })
-
         }
 
         function edit_form_data(url) {
@@ -198,12 +187,57 @@
                         $('#edit_form').hide()
                         table_info()
                     })
-
                 }
             })
 
-
         }
+
+
+        $("#search").click(function () {
+            var value = $("#search_tenant_name").val()
+            if (value) {
+                $('#loading').show();
+                var table_infos = $('#table_info');
+                url = '/tanent/tanents/?name=' + value
+                $.ajax({
+                    url: url,
+                    datatype: "html",
+                    type: "get",
+                    success: function (data) {
+                        table_infos.html(data);
+                        setTimeout(function () {
+                            $('#loading').hide();
+                        }, 500);
+                    }
+                })
+            }
+            else {
+                table_info();
+            }
+        })
+
+        $("#search_tenant_name").change(function () {
+            var value = $("#search_tenant_name").val()
+            if (value) {
+                $('#loading').show();
+                var table_infos = $('#table_info');
+                url = '/tanent/tanents/?name=' + value
+                $.ajax({
+                    url: url,
+                    datatype: "html",
+                    type: "get",
+                    success: function (data) {
+                        table_infos.html(data);
+                        setTimeout(function () {
+                            $('#loading').hide();
+                        }, 500);
+                    }
+                })
+            }
+            else {
+                table_info();
+            }
+        })
 
 
     </script>

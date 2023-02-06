@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 #         )
 
 class Member(models.Model):
-    name = models.CharField(max_length=5)
+    name = models.CharField(max_length=10)
     email = models.CharField(max_length=100)
     mobile = models.CharField(max_length=100)
     parmanent_address = models.CharField(max_length=100)
