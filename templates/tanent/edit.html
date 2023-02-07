@@ -2,8 +2,8 @@
 <div class="card card-primary">
 
     <div id="form_loading" class="loading">
-                                <img src="{% static 'img/spinning.gif' %} " alt="">
-                            </div>
+        <img src="{% static 'img/spinning.gif' %} " alt="">
+    </div>
     <div class="card-header">
         <h3 class="card-title">Tanent Edit</h3>
     </div>
@@ -13,14 +13,14 @@
     <form id="edit_form_main">
         {% csrf_token %}
         <div class="card-body">
-             <div class="form-group">
+            <div class="form-group">
                 <label>Flat</label>
                 <select class="custom-select" name="flat" id="flat">
                     {% for flat in flat %}
-                    <option value="{{ flat.id }}">{{ flat.flat_no }}</option>
+                        <option value="{{ flat.id }}">{{ flat.flat_no }}</option>
                     {% endfor %}
                 </select>
-             </div>
+            </div>
 
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-3 col-form-label">Name :</label>
@@ -41,7 +41,7 @@
                 <label for="inputPassword3" class="col-sm-3 col-form-label">Mobile :</label>
                 <div class="col-sm-12">
                     <input type="Number" class="form-control" id="inputPassword3"
-                           placeholder="+88018000000000" name="mobile" value="{{  tanent.mobile }}">
+                           placeholder="+88018000000000" name="mobile" value="{{ tanent.mobile }}">
                 </div>
             </div>
 
@@ -49,7 +49,8 @@
                 <label for="inputPassword3" class="col-sm-3 col-form-label">Parmanent Address :</label>
                 <div class="col-sm-12">
                     <input type="text" class="form-control" id="inputPassword3"
-                           placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address" value="{{ tanent.parmanent_address }}">
+                           placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address"
+                           value="{{ tanent.parmanent_address }}">
                 </div>
             </div>
 
@@ -60,6 +61,14 @@
                            placeholder="0295720000" name="nid" value="{{ tanent.nid }}">
                 </div>
             </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <input type="date" class="form-control"
+                           name="date" value="{{ tanent.date }}">
+
+                </div>
+            </div>
 
 
         </div>
@@ -67,11 +76,11 @@
 
         <div class="card-footer">
             <span class="btn btn-primary" onclick="edit_form_data('/tanent/edit/{{ tanent.id }}')">Submit</span>
-            <span id="edit_cancel" class="btn btn-primary float-right" >Cancel</span>
+            <span id="edit_cancel" class="btn btn-primary float-right">Cancel</span>
         </div>
     </form>
 </div>
 
 <script>
-        $("#flat").val({{ tanent.flat.id }})
+    $("#flat").val({{ tanent.flat.id }})
 </script>

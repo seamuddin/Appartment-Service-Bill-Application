@@ -6,10 +6,7 @@
             display: none;
         }
 
-        .table-main {
-            overflow: scroll;
-            min-height: 475px;
-        }
+
 
     </style>
     <div class="content-wrapper">
@@ -56,9 +53,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Tanent List</h3>
                             </div>
-                            <div id="loading" class="loading">
-                                <img src="{% static 'img/spinning.gif' %} " alt="">
-                            </div>
+
 
                             <div class="row justify-content-center mt-4">
                                 <div class="col-md-8">
@@ -69,7 +64,12 @@
 
 
                             <!-- /.card-header -->
-                            <div class="card-body table-main" id="table_info">
+                            <div class="card-body table-main" >
+                                <div id="loading" class="loading">
+                                     <img src="{% static 'img/spinning.gif' %} " alt="">
+                                 </div>
+                                <table class="table table-bordered" id="table_info">
+                                </table>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">

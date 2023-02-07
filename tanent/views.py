@@ -82,6 +82,7 @@ def add(request,**kwargs):
             tanent.mobile = request.POST.get('mobile')
             tanent.parmanent_address = request.POST.get('parmanent_address')
             tanent.nid = request.POST.get('nid')
+            tanent.date = request.POST.get('date')
             tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
             tanent.full_clean()
             tanent.save()
@@ -100,3 +101,6 @@ def add(request,**kwargs):
 
 
 
+@login_required(login_url='login')
+def payment_info(request,tanent_id, **kwargs):
+    return render(request,'tanent/index.html')
