@@ -1,6 +1,6 @@
 from django.db import models
 from flat.models import *
-
+from django.utils.timezone import now
 # Create your models here.
 import datetime
 class Tanent(models.Model):
@@ -10,4 +10,4 @@ class Tanent(models.Model):
     parmanent_address = models.CharField(max_length=100)
     nid = models.IntegerField()
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
-    datetime = models.CharField(max_length=10, default=None)
+    date = models.DateField(default=now())

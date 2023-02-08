@@ -175,11 +175,15 @@
                 data: $("#edit_form_main").serializeArray(),
                 type: "post",
                 success: function (data) {
-                    $('#form_loading').show()
+                    if (data)
+                    {
                     $('#edit_form').html(data);
+                    $('#form_loading').show()
                     setTimeout(function () {
                         $('#form_loading').hide();
                     }, 500);
+                    }
+
 
                     $("#edit_cancel").click(function (event) {
                         event.preventDefault
@@ -187,6 +191,9 @@
                         $('#edit_form').hide()
                         table_info()
                     })
+                },
+                error: function(err) {
+                reject(err) // Reject the promise and go to catch()
                 }
             })
 

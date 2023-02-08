@@ -35,6 +35,7 @@ def edit(request,tanent_id, **kwargs):
             tanent.mobile = request.POST.get('mobile')
             tanent.parmanent_address = request.POST.get('parmanent_address')
             tanent.nid = request.POST.get('nid')
+            tanent.date = request.POST.get('date')
             tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
             tanent.save()
             context = {}
