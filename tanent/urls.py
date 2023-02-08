@@ -8,4 +8,5 @@ urlpatterns = [
     path('delete/<int:tanent_id>',views.delete,name='tanent_delete'),
     path('edit/<int:tanent_id>',views.edit,name='tanent_edit'),
     path('payment_info/<int:tanent_id>',views.payment_info,name='tanent_payment_info'),
+    path('payment_data/<int:tanent_id>',views.payment_data,name='tanent_payment_data'),
 ]

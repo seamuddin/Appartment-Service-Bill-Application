@@ -62,10 +62,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Date: {{ tanent.date|date:"Y-m-d" }}</label>
+                <label>Date: </label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                     <input type="date" class="form-control"
-                           name="date" value="{{ tanent.date|date:"Y-m-d" }}">
+                           name="date" value="{% if my_date %}{{ my_date }}{% else %}{{ tanent.date }}{% endif %}">
 
                 </div>
             </div>

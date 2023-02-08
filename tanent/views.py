@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
+
+from tanent import obj
 from .models import *
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
@@ -56,6 +58,7 @@ def edit(request,tanent_id, **kwargs):
     tanent = Tanent.objects.get(id=tanent_id)
     context = {}
     context['tanent'] = tanent
+    context['my_date'] = str(tanent.date)
     context ['flat'] = Flat.objects.all()
     return render(request, 'tanent/edit.html',context=context)
 
@@ -104,4 +107,36 @@ def add(request,**kwargs):
 
 @login_required(login_url='login')
 def payment_info(request,tanent_id, **kwargs):
-    return render(request,'tanent/index.html')
+    tanent = Tanent.objects.get(id=tanent_id)
+    context = {}
+    context['tanent'] = tanent
+    return render(request,'tanent/payment_info.html', context=context)
+
+
+@login_required(login_url='login')
+def payment_data(request,tanent_id, **kwargs):
+    date = Tanent.objects.get(id=tanent_id)
+    date = date.date
+    from datetime import datetime, timedelta
+    from collections import OrderedDict
+    dates = [str(date), str(datetime.today().date())]
+    start, end = [datetime.strptime(_, "%Y-%m-%d") for _ in dates]
+    month_list = list(
+        OrderedDict(((start + timedelta(_)).strftime(r"%b-%y"), None) for _ in range((end - start).days)).keys())
+    data_list=[]
+    tanent = Tanent.objects.get(id=tanent_id)
+    for month in month_list:
+        data_list.append(obj({'month': month, 'amount':calculate_service_charge(tanent.flat.size)}))
+    context = {}
+    context['bill'] = data_list
+    context['tanent'] = tanent
+    return render(request, 'tanent/payment_data.html', context=context)
+
+
+def calculate_service_charge(flat_size):
+    if int(flat_size) < 800:
+        return 500
+    elif int(flat_size) < 1200:
+        return 800
+    elif int(flat_size) >= 1200:
+        return 1500
