@@ -122,11 +122,14 @@ def payment_data(request,tanent_id, **kwargs):
     dates = [str(date), str(datetime.today().date())]
     start, end = [datetime.strptime(_, "%Y-%m-%d") for _ in dates]
     month_list = list(
-        OrderedDict(((start + timedelta(_)).strftime(r"%b-%y"), None) for _ in range((end - start).days)).keys())
+        OrderedDict(((start + timedelta(_)).strftime(r"%b %Y"), None) for _ in range((end - start).days)).keys())
     data_list=[]
     tanent = Tanent.objects.get(id=tanent_id)
     for month in month_list:
-        data_list.append(obj({'month': month, 'amount':calculate_service_charge(tanent.flat.size)}))
+        data_list.append({'month': month,
+                          'amount':calculate_service_charge(tanent.flat.size)
+
+                          })
     context = {}
     context['bill'] = data_list
     context['tanent'] = tanent
