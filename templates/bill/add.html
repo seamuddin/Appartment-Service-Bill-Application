@@ -1,0 +1,110 @@
+{% extends 'dashboard/index.html' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 justify-content-end">
+
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Generate Bill</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+
+
+                <div class="row justify-content-center">
+
+                    <section class="col-lg-8 connectedSortable">
+                        <!-- /.card -->
+                        <!-- Horizontal Form -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Generate Bill</h3>
+                            </div>
+
+                            <strong class="text-center mt-2 text-danger">{{ error }}</strong>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form class="form-horizontal" method="post">
+                                {% csrf_token %}
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Tanent</label>
+                                        <div class="col-sm-4">
+                                            <select class="custom-select" name="flat">
+                                                {% for tanent in tanents %}
+                                                    <option value="{{ tanent.id }}">{{ tanent.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
+                                        <div class="col-sm-4">
+                                            <select class="custom-select" name="flat">
+                                                {% for month in month %}
+                                                    <option value="{{ month.number }}">{{ month.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
+                                        <div class="col-sm-4">
+                                            <select class="custom-select" name="flat">
+                                                {% for year in years %}
+                                                    <option value="{{ year }}">{{ year }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Amount
+                                            :</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" id="inputPassword3"
+                                                   placeholder="0000 TK" name="parmanent_address">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info float-right">Save</button>
+
+                                </div>
+                                <!-- /.card-footer -->
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </section>
+                </div>
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+
+{% block form_js %}
+
+{% endblock %}

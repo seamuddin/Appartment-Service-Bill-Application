@@ -8,4 +8,6 @@ class BillHistory(models.Model):
     month = models.CharField(max_length=2)
     year = models.CharField(max_length=4)
     tanent = models.ForeignKey(Tanent, on_delete=models.CASCADE)
+    amount = models.FloatField()
+    status = models.IntegerField()
     

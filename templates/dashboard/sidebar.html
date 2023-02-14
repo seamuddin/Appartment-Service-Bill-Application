@@ -107,6 +107,32 @@
                 </li>
 
 
+                <!-- Tanent Nav -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-money-bill nav-icon"></i>
+                        <p> Bill <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'generate_bill' %}" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Generate Bill</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'tanent' %}" class="nav-link">
+                                <i class="fas fa-long-arrow-alt-right nav-icon"></i>
+                                <p>Billing History</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
 
             </ul>
         </nav>
