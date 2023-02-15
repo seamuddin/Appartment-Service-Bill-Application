@@ -31,3 +31,8 @@
     min-height: 475px!important;
     position: relative;
         }
+
+.bill-info p span
+{
+    font-weight: bold;
+}

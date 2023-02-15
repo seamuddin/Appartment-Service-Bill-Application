@@ -1,0 +1,11 @@
+<div>
+    <p><span>Tanent Name : </span>{{ tanent }}</p>
+    <p><span>Flat Name : </span>{{ flat_no }}</p>
+    <p><span>Flat Size : </span>{{ size }}</p>
+    <p><span>Month : </span>{{ month }}</p>
+    <p><span>Year : </span>{{ year }}</p>
+    <p><span>Bill Status : </span>{% if status == 1 %} <span class="text-success"> Paid</span> {% else %} <span class="text-danger"> UnPaid</span>  {% endif %}</p>
+    <p><span>Service Bill : </span>{{ amount }}</p>
+</div>
+<button class="btn btn-lg" style="position: absolute;top: 60px;right: 15px;"><i class="fa fa-print" aria-hidden="true"></i>
+Print</button>

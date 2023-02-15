@@ -1,5 +1,5 @@
 {% extends 'dashboard/index.html' %}
-
+{% load static %}
 {% block content %}
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -21,13 +21,13 @@
         <!-- Main content -->
 
         <section class="content">
-            <div class="container-fluid">
+            <div class="container-fluid p-5">
                 <!-- Small boxes (Stat box) -->
 
 
                 <div class="row justify-content-center">
 
-                    <section class="col-lg-8 connectedSortable">
+                    <section class="col-12 col-md-6 col-lg-6 connectedSortable">
                         <!-- /.card -->
                         <!-- Horizontal Form -->
                         <div class="card card-info">
@@ -38,13 +38,13 @@
                             <strong class="text-center mt-2 text-danger">{{ error }}</strong>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="form-horizontal" method="post">
+                            <form class="form-horizontal" id="form_data">
                                 {% csrf_token %}
                                 <div class="card-body">
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Tanent</label>
-                                        <div class="col-sm-4">
-                                            <select class="custom-select" name="flat">
+                                    <div class="form-group row justify-content-center">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Tanent :</label>
+                                        <div class="col-sm-7">
+                                            <select class="custom-select" name="tanent">
                                                 {% for tanent in tanents %}
                                                     <option value="{{ tanent.id }}">{{ tanent.name }}</option>
                                                 {% endfor %}
@@ -52,10 +52,10 @@
                                         </div>
                                     </div>
 
-                                <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
-                                        <div class="col-sm-4">
-                                            <select class="custom-select" name="flat">
+                                    <div class="form-group row justify-content-center">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Month :</label>
+                                        <div class="col-sm-7">
+                                            <select class="custom-select" name="month">
                                                 {% for month in month %}
                                                     <option value="{{ month.number }}">{{ month.name }}</option>
                                                 {% endfor %}
@@ -64,10 +64,10 @@
                                     </div>
 
 
-                                <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Year</label>
-                                        <div class="col-sm-4">
-                                            <select class="custom-select" name="flat">
+                                    <div class="form-group row justify-content-center">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Year :</label>
+                                        <div class="col-sm-7">
+                                            <select class="custom-select" name="year">
                                                 {% for year in years %}
                                                     <option value="{{ year }}">{{ year }}</option>
                                                 {% endfor %}
@@ -76,26 +76,52 @@
                                     </div>
 
 
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Amount
+                                    <div class="form-group row justify-content-center">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Amount
                                             :</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-7">
                                             <input type="text" class="form-control" id="inputPassword3"
-                                                   placeholder="0000 TK" name="parmanent_address">
+                                                   placeholder="0000 TK" name="amount" readonly>
                                         </div>
                                     </div>
 
 
                                 </div>
                                 <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-info float-right">Save</button>
+                                <div class="card-footer justify-content-center row">
+                                    <button type="submit" class="btn btn-info float-right" id="generate">Generate
+                                    </button>
 
                                 </div>
                                 <!-- /.card-footer -->
                             </form>
                         </div>
                         <!-- /.card -->
+                    </section>
+                    <section class="col-12 col-md-6 col-lg-6" id="bil_info">
+
+                        <div class="card card-info" style="min-height: 372px">
+                            <div id="loading" class="loading">
+                                <img src="{% static 'img/spinning.gif' %} " alt="">
+                            </div>
+                            <div class="card-header">
+                                <h3 class="card-title">Bill Info</h3>
+
+
+                            </div>
+                            <div class="card-body bill-info" id="bill_info">
+                                <div>
+                                    <p><span>Tanent Name : </span></p>
+                                    <p><span>Flat Name : </span></p>
+                                    <p><span>Flat Size : </span></p>
+                                    <p><span>Month : </span></p>
+                                    <p><span>Year : </span></p>
+                                    <p><span>Bill Status : </span></p>
+                                    <p><span>Service Bill : </span></p>
+                                </div>
+
+                            </div>
+                        </div>
                     </section>
                 </div>
                 <!-- /.row (main row) -->
@@ -106,5 +132,25 @@
 {% endblock %}
 
 {% block form_js %}
+    <script>
+        $("#loading").hide()
+        $("#generate").click(function (event) {
+            event.preventDefault()
+            $.ajax({
+                url: "{% url 'generate_bill' %}",
+                datatype: "html",
+                data: $("#form_data").serializeArray(),
+                type: "post",
+                success: function (data) {
+                    $('#loading').show()
+                    $('#bill_info').html(data);
+                    setTimeout(function () {
+                        $('#loading').hide();
+                    }, 500);
 
+
+                }
+            })
+        })
+    </script>
 {% endblock %}
