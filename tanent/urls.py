@@ -9,4 +9,6 @@ urlpatterns = [
     path('edit/<int:tanent_id>',views.edit,name='tanent_edit'),
     path('payment_info/<int:tanent_id>',views.payment_info,name='tanent_payment_info'),
     path('payment_data/<int:tanent_id>',views.payment_data,name='tanent_payment_data'),
+    path('get_flat_charge/<int:tanent_id>',views.get_flat_charge,name='get_flat_charge'),
+    path('pdf_data/<int:bill_id>',views.pdf_data,name='pdf_data'),
 ]

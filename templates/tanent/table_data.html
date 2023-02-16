@@ -10,7 +10,7 @@
         <th>NID</th>
         <th>Flat</th>
         <th>Date</th>
-        <th>Bill</th>
+{#        <th>Bill</th>#}
         <th>Action</th>
     </tr>
     </thead>
@@ -25,7 +25,7 @@
             <td>{{ tanent.nid }}</td>
             <td>{{ tanent.flat.flat_no }}</td>
             <td>{{ tanent.date}}</td>
-            <td class="text-center"><a href="{% url 'tanent_payment_info' tanent.id %} "><i class="fas fa-wallet"></i></a></td>
+{#            <td class="text-center"><a href="{% url 'tanent_payment_info' tanent.id %} "><i class="fas fa-wallet"></i></a></td>#}
             <td class="text-center">
                 <span href="" class="p-2" onclick="delete_item('/tanent/delete/{{ tanent.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
                 <span href="" onclick="edit_item('edit/{{ tanent.id }}')"><i class="fas fa-edit"></i></span>

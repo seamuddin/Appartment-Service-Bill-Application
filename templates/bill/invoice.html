@@ -1,0 +1,98 @@
+{% include 'dashboard/include/header.html' %}
+<div class="receipt-content" id="receipt">
+    <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="invoice-wrapper">
+                    <div class="intro">
+                        Hello <strong>{{ tanent }}</strong>,
+                        <br>
+                        This is the receipt for a service charge of <strong>{{ month }} {{ year }}</strong>
+                    </div>
+
+                    <div class="payment-info">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Invoice No.</span>
+                                <strong>{{ invoice_no }}</strong>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <span>Bill Generate Date</span>
+                                <strong>{{ invoice_date }}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-details">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>Tanent Information</span>
+                                <strong>
+                                    {{ tanent }}
+                                </strong>
+                                <p style="margin-bottom: 0">
+                                    {{ tanent_add }}
+                                </p>
+                                <p>
+                                    <b>{{ tanent_mobile }}</b> <br>
+                                    <b>{{ tanent_email }}</b>
+                                </p>
+                                <p>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line-items">
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+
+                                <th scope="col">Flat No</th>
+                                <th scope="col">Month</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">{{ flat }}</th>
+                                <td>{{ month }}</td>
+                                <td>{{ year }}</td>
+                                <td>{{ amount }}</td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                        <div class="total text-right">
+                            <p class="extra-notes">
+                                <strong>Extra Notes</strong>
+                               This is system generated Invoice.
+                            </p>
+                            <div class="field">
+                                Subtotal <span>{{ amount }} TK</span>
+                            </div>
+
+                            <div class="field grand-total">
+                                Total <span>{{ amount }} TK</span>
+                            </div>
+                        </div>
+
+                        <div class="print" id="print">
+
+                                <i class="fa fa-print"></i>
+                                Print this receipt
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    Copyright © 2014. company name
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                    

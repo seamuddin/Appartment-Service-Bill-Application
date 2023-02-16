@@ -4,11 +4,26 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.views.generic import View
 from servicebill import settings
+from . import html_to_pdf
 # Create your views here.
 from tanent.models import Tanent
 from .models import BillHistory
 from flat.models import Flat
 import calendar
+from datetime import datetime
+
+from django.http import HttpResponse
+from django.views.generic import View
+
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        # getting the template
+        pdf = html_to_pdf('bill/invoice.html')
+
+        # rendering the template
+        return HttpResponse(pdf, content_type='application/pdf')
+
 
 @login_required(login_url='login')
 def index(request,**kwargs):
@@ -30,13 +45,16 @@ class LogoutView(View):
 
 @login_required(login_url='login')
 def generate_bill(request,**kwargs):
+    import random
     if request.POST:
         bill_history = BillHistory()
         bill_history.month = request.POST.get('month')
         bill_history.year = request.POST.get('year')
         bill_history.amount = request.POST.get('amount') if request.POST.get('amount') else 400
         bill_history.status = 0
+        bill_history.invoice_number = 'BL'+str(BillHistory.objects.last().id+1 if BillHistory.objects.last() else 0) + str(random.randint(0,1000))
         bill_history.tanent = Tanent.objects.get(id = request.POST.get('tanent'))
+        bill_history.date = datetime.now()
         bill_history.clean()
         bill_history.save()
 
@@ -50,6 +68,7 @@ def generate_bill(request,**kwargs):
         bill_info['flat_no'] = bill_history.tanent.flat.flat_no
         bill_info['size'] = bill_history.tanent.flat.size
         bill_info['amount'] = bill_history.amount
+        bill_info['id'] = bill_history.id
         return render(request,'bill/bill_info.html',context=bill_info)
 
 
@@ -80,3 +99,12 @@ def month_list():
 
     return month
 
+class GeneratePdfForBill(View):
+    def get(self, request, bill_id, *args, **kwargs):
+        data = {}
+
+        # getting the template
+        pdf = html_to_pdf('bill/invoice.html')
+
+        # rendering the template
+        return HttpResponse(pdf, content_type='application/pdf')
