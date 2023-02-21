@@ -46,12 +46,14 @@
 }
 
 .receipt-content .invoice-wrapper {
-  background: #FFF;
-  border: 1px solid #CDD3E2;
-  box-shadow: 0px 0px 1px #CCC;
-  padding: 40px 40px 60px;
-  margin-top: 40px;
-  border-radius: 4px;
+      background: #FFF;
+    border: 1px solid #CDD3E2;
+    box-shadow: 0px 0px 1px #CCC;
+    padding: 40px 40px 60px;
+    margin-top: 40px;
+    border-radius: 4px;
+    height: 700px;
+    width: 700px;
 }
 
 .receipt-content .invoice-wrapper .payment-details span {
@@ -256,4 +258,9 @@
   text-align: center;
   font-size: 12px;
   color: #969CAD;
+}
+.print
+{
+        position: absolute;
+    bottom: 20px;
 }

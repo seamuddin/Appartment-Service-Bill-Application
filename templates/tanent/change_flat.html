@@ -11,7 +11,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item active">Tanent</li>
-                            <li class="breadcrumb-item active">Add</li>
+                            <li class="breadcrumb-item active">Change Flat</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,7 +33,7 @@
                         <!-- Horizontal Form -->
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Add Tanent</h3>
+                                <h3 class="card-title">Change Flat</h3>
                             </div>
 
                             <strong class="text-center mt-2 text-danger">{{ error }}</strong>
@@ -42,6 +42,14 @@
                             <form class="form-horizontal" method="post">
                                 {% csrf_token %}
                                 <div class="card-body">
+                                <div class="form-group">
+                                        <label>Tanent</label>
+                                        <select class="custom-select" name="tanent">
+                                            {% for tanent in tanent %}
+                                                <option value="{{ tanent.id }}">{{ tanent.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <label>Flat</label>
                                         <select class="custom-select" name="flat">
@@ -51,51 +59,20 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputEmail3"
-                                                   placeholder="John Doe" name="name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Email :</label>
-                                        <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="inputPassword3"
-                                                   placeholder="example@gmail.com" name="email">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Mobile :</label>
-                                        <div class="col-sm-12">
-                                            <input type="Number" class="form-control" id="inputPassword3"
-                                                   placeholder="+88018000000000" name="mobile">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Parmanent Address
-                                            :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputPassword3"
-                                                   placeholder="Uttara, Dhaka, Bangladesh" name="parmanent_address">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-3 col-form-label">NID :</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="inputPassword3"
-                                                   placeholder="0295720000" name="nid">
+                                    <div class="form-group">
+                                        <label>Rent Date:</label>
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="date" class="form-control"
+                                                    name="date" id="bbid_flat">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Date:</label>
+                                        <label>End Date:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="date" class="form-control"
-                                                    name="date">
+                                                    name="end_date">
 
                                         </div>
                                     </div>
@@ -104,7 +81,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-info float-right">Save</button>
+                                    <button type="submit" class="btn btn-info float-right">Change</button>
 
                                 </div>
                                 <!-- /.card-footer -->

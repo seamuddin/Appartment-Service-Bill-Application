@@ -1,9 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
 <div class="receipt-content" id="receipt">
     <div class="container bootstrap snippets bootdey">
         <div class="row">
-            <div class="col-md-12">
-                <div class="invoice-wrapper">
+            <div class="col-md-12" style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+                <div class="invoice-wrapper" id="invoice_main">
                     <div class="intro">
                         Hello <strong>{{ tanent }}</strong>,
                         <br>
@@ -69,7 +72,7 @@
                         <div class="total text-right">
                             <p class="extra-notes">
                                 <strong>Extra Notes</strong>
-                               This is system generated Invoice.
+                                This is system generated Invoice.
                             </p>
                             <div class="field">
                                 Subtotal <span>{{ amount }} TK</span>
@@ -80,20 +83,23 @@
                             </div>
                         </div>
 
-                        <div class="print" id="print_it">
 
-                                <i class="fa fa-print"></i>
-                                Print this receipt
-
-                        </div>
                     </div>
                 </div>
 
-                <div class="footer">
-                    Copyright © 2014. company name
-                </div>
+                <div class="print" id="print_it">
+
+                            <i class="fa fa-print"></i>
+                            Print this receipt
+
+                        </div>
+
             </div>
         </div>
     </div>
 </div>
+
+</body>
+
+</html>
 

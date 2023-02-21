@@ -212,11 +212,16 @@
                             event.stopPropagation()
 
 
-                            html2canvas(document.querySelector('#receipt')).then((canvas) => {
+                            html2canvas(document.querySelector('#invoice_main')).then((canvas) => {
                                 let base64image = canvas.toDataURL('image/png');
-			                    // console.log(base64image);
-                                let pdf = new jsPDF('p', 'px', [1200, 900]);
-                                pdf.addImage(base64image, 'PNG', 15, 15, 1110, 360);
+                                // console.log(base64image);
+                                //  let pdf = new jsPDF('p', 'px', [1200, 900]);
+                                let pdf = jsPDF({
+                                    orientation: 'p', // landscape
+                                    unit: 'px', // points, pixels won't work properly
+                                    format: [612, 792] // set needed dimensions for any element
+                                });
+                                pdf.addImage(base64image, 'PNG', 15, 15, 588, 765);
                                 pdf.save('invoice.pdf');
                             });
 
@@ -224,23 +229,22 @@
                         });
 
 
-
                     }
                 }
             })
         }
-        </script>
+    </script>
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-			integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
 
 
     <script>

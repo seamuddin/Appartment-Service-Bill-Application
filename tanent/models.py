@@ -11,5 +11,6 @@ class Tanent(models.Model):
     nid = models.IntegerField()
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     date = models.DateField(default=now())
+    end_date = models.DateField(default='1900-01-01')
 
 
