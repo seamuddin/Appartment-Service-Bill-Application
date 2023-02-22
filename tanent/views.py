@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
 
 from tanent import obj
+from tanent.utils import tanent_data_check_on_change_history
 from .models import *
 
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your views here.
 @login_required(login_url='login')
 def index(request,**kwargs):
+    tanent_data_check_on_change_history()
     context = {}
     context['tanent'] = Tanent.objects.all()
     return render(request, 'tanent/index.html',context=context)
@@ -43,7 +45,8 @@ def edit(request,tanent_id, **kwargs):
             tanent.parmanent_address = request.POST.get('parmanent_address')
             tanent.nid = request.POST.get('nid')
             tanent.date = request.POST.get('date')
-            tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
+            tanent.end_date = request.POST.get('end_date')
+            # tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
             tanent.save()
             context = {}
             context['tanent'] = tanent
@@ -63,7 +66,8 @@ def edit(request,tanent_id, **kwargs):
     tanent = Tanent.objects.get(id=tanent_id)
     context = {}
     context['tanent'] = tanent
-    context['my_date'] = str(tanent.date)
+    context['date'] = str(tanent.date)
+    context['end_date'] = str(tanent.end_date)
     context ['flat'] = Flat.objects.all()
     return render(request, 'tanent/edit.html',context=context)
 
@@ -181,18 +185,24 @@ def change_tanent_flat(request, **kwargs):
     if request.POST:
         try:
 
-            tanent = Tanent.objects.get(id=request.POST.get('tanent'))
-            tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
-            tanent.date = request.POST.get('date')
-            tanent.end_date = request.POST.get('end_date')
-            already_exist_verify(tanent,tanent.flat)
-            tanent.full_clean()
-            tanent.save()
+            # tanent = Tanent.objects.get(id=request.POST.get('tanent'))
+            # tanent.flat = Flat.objects.get(id=request.POST.get('flat'))
+            # tanent.date = request.POST.get('date')
+
+            flat_change_history = FlatChangeHistory()
+            flat_change_history.tanent = Tanent.objects.get(id=request.POST.get('tanent'))
+            flat_change_history.flat = Flat.objects.get(id=request.POST.get('flat'))
+            flat_change_history.date = request.POST.get('date')
+            already_exist_verify(flat_change_history.tanent, flat_change_history.flat)
+            flat_change_history.full_clean()
+            flat_change_history.save()
+            # tanent.full_clean()
+            # tanent.save()
             return redirect('/tanent')
         except ValidationError as e:
             context = {}
             request.POST._mutable = True
-            context['tanent'] = request.POST
+            context['tanent_data'] = request.POST
             context['flat'] = Flat.objects.all()
             context['tanent'] =  Tanent.objects.all()
             context['error'] = str(e.message_dict)

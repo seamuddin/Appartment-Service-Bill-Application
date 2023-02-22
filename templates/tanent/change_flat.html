@@ -44,7 +44,7 @@
                                 <div class="card-body">
                                 <div class="form-group">
                                         <label>Tanent</label>
-                                        <select class="custom-select" name="tanent">
+                                        <select class="custom-select" name="tanent" id="tanent">
                                             {% for tanent in tanent %}
                                                 <option value="{{ tanent.id }}">{{ tanent.name }}</option>
                                             {% endfor %}
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Flat</label>
-                                        <select class="custom-select" name="flat">
+                                        <select class="custom-select" name="flat" id="flat">
                                             {% for flat in flat %}
                                                 <option value="{{ flat.id }}">{{ flat.flat_no }}</option>
                                             {% endfor %}
@@ -64,19 +64,19 @@
                                         <label>Rent Date:</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                             <input type="date" class="form-control"
-                                                    name="date" id="bbid_flat">
+                                                    name="date" id="bbid_flat" value="{{ tanent_data.date }}">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>End Date:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="date" class="form-control"
-                                                    name="end_date">
-
-                                        </div>
-                                    </div>
-
+{#                                    <div class="form-group">#}
+{#                                        <label>End Date:</label>#}
+{#                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">#}
+{#                                            <input type="date" class="form-control"#}
+{#                                                    name="end_date">#}
+{##}
+{#                                        </div>#}
+{#                                    </div>#}
+{##}
 
                                 </div>
                                 <!-- /.card-body -->
@@ -98,5 +98,10 @@
 {% endblock %}
 
 {% block form_js %}
+
+    <script>
+        $("#tanent").val({{ tanent_data.tanent }})
+        $("#flat").val({{ tanent_data.flat }})
+    </script>
 
 {% endblock %}

@@ -166,23 +166,19 @@
         function edit_form_data(url) {
             $(this).stopPropagation
             $('#form_loading').show()
-            setTimeout(function () {
-                $('#form_loading').hide();
-            }, 500);
+            {#setTimeout(function () {#}
+            {#    $('#form_loading').hide();#}
+            {#}, 500);#}
             $.ajax({
                 url: url,
                 datatype: "html",
                 data: $("#edit_form_main").serializeArray(),
                 type: "post",
                 success: function (data) {
-                    debugger
-
-
-
+                    $('#form_loading').show()
                     if (data)
                     {
-                    $('#edit_form').html(data);
-                    $('#form_loading').show()
+                        $('#edit_form').html(data);
                     setTimeout(function () {
                         $('#form_loading').hide();
                     }, 500);
