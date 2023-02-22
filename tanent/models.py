@@ -32,6 +32,10 @@ class FlatChangeHistory(models.Model):
 
     def clean(self):
         if self.tanent and self.date:
-            if not self.tanent.date < self.date or not self.tanent.end_date < self.date:
-                raise ValidationError({'Rent Date': 'You are already living during this day %s' % self.date})
+            if self.tanent.end_date:
+                if not self.tanent.date < self.date or not self.tanent.end_date < self.date:
+                    raise ValidationError({'Rent Date': 'You are already living during this day %s' % self.date})
+            else:
+                if not self.tanent.date < self.date:
+                    raise ValidationError({'Rent Date': 'You are already living during this day %s' % self.date})
 
