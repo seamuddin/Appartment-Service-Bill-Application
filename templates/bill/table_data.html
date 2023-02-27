@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th style="width: 10px">#</th>
+        <th>Tanent</th>
+        <th>Month</th>
+        <th>Year</th>
+        <th>Amount</th>
+        <th>Payment Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for bill in bill %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ bill.tanent.name }}</td>
+            <td>{{ bill.month_name }}</td>
+            <td>{{ bill.year }}</td>
+            <td>{{ bill.amount }}</td>
+            <td>{% if bill.status == 1  %}<buttaon style="width: 120px" class="btn btn-success">Paid</buttaon>{% else %}<button style="width: 120px" class="btn btn-danger" >UnPaid</button>{% endif %}</td>
+            <td>{% if bill.status == 1  %}<buttaon style="width: 120px" class="btn btn-success">Already Paid</buttaon>{% else %}<button style="width: 120px" class="btn btn-primary" onclick="status_update({{ bill.id }})">Pay</button>{% endif %}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

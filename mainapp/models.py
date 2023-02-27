@@ -2,6 +2,7 @@ from django.db import models
 # Create your models here.
 from tanent.models import Tanent
 from django.utils.timezone import now
+import calendar
 
 class BillHistory(models.Model):
     month = models.CharField(max_length=2)
@@ -11,4 +12,7 @@ class BillHistory(models.Model):
     status = models.IntegerField()
     invoice_number = models.CharField(max_length=20, default='0')
     date = models.DateTimeField(default=now())
-    
+
+    @property
+    def month_name(self):
+        return calendar.month_name[int(self.month)]

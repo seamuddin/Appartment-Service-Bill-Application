@@ -307,7 +307,7 @@ exports.dosPermissions = null;
 'use strict';
 
 // load the global object first:
-// - it should be better integrated in the system (unhandledRejection in node)
+// - it should be better integrated in the core (unhandledRejection in node)
 // - the environment may have a custom Promise implementation (see zone.js)
 var ES6Promise = null;
 if (typeof Promise !== "undefined") {
@@ -3567,7 +3567,7 @@ ZipEntries.prototype = {
         this.centralDirOffset = this.reader.readInt(4);
 
         this.zipCommentLength = this.reader.readInt(2);
-        // warning : the encoding depends of the system locale
+        // warning : the encoding depends of the core locale
         // On a linux machine with LANG=en_US.utf8, this field is utf8 encoded.
         // On a windows machine, this field is encoded with the localized windows code page.
         var zipComment = this.reader.readData(this.zipCommentLength);
@@ -4666,7 +4666,7 @@ var Z_DEFLATED  = 8;
  * - `header` (Object) - custom header for gzip
  *   - `text` (Boolean) - true if compressed data believed to be text
  *   - `time` (Number) - modification time, unix timestamp
- *   - `os` (Number) - operation system code
+ *   - `os` (Number) - operation core code
  *   - `extra` (Array) - array of bytes with extra data (max 65536)
  *   - `name` (String) - file name (binary string)
  *   - `comment` (String) - comment (binary string)
@@ -7771,7 +7771,7 @@ function GZheader() {
   this.time       = 0;
   /* extra flags (not used when writing a gzip file) */
   this.xflags     = 0;
-  /* operating system */
+  /* operating core */
   this.os         = 0;
   /* pointer to extra field or Z_NULL if none */
   this.extra      = null;
@@ -8219,7 +8219,7 @@ var Z_DEFLATED  = 8;
 var    HEAD = 1;       /* i: waiting for magic header */
 var    FLAGS = 2;      /* i: waiting for method and flags (gzip) */
 var    TIME = 3;       /* i: waiting for modification time (gzip) */
-var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
+var    OS = 4;         /* i: waiting for extra flags and operating core (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
 var    NAME = 7;       /* i: waiting for end of file name (gzip) */

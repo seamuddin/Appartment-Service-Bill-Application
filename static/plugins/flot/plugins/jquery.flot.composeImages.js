@@ -17,7 +17,7 @@ of them, by verifying if they will be usable or not, later in the flow.
 After selecting only usable sources, it passes them to getGenerateTempImg
 function, which generates temporary images out of them. This function
 expects that some of the passed sources (canvas or SVG) may still have
-problems being converted to an image and makes sure the promises system,
+problems being converted to an image and makes sure the promises core,
 used by composeImages function, moves forward. As an example, SVGs with
 missing information from header or with unsupported content, may lead to
 failure in generating the temporary image. Temporary images are required

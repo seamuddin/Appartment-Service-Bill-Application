@@ -7214,10 +7214,10 @@ core_defaults._set('global', {
  * @prop {function} getPadding -  Returns an object with padding on the edges
  * @prop {number} width - Width of item. Must be valid after update()
  * @prop {number} height - Height of item. Must be valid after update()
- * @prop {number} left - Left edge of the item. Set by layout system and cannot be used in update
- * @prop {number} top - Top edge of the item. Set by layout system and cannot be used in update
- * @prop {number} right - Right edge of the item. Set by layout system and cannot be used in update
- * @prop {number} bottom - Bottom edge of the item. Set by layout system and cannot be used in update
+ * @prop {number} left - Left edge of the item. Set by layout core and cannot be used in update
+ * @prop {number} top - Top edge of the item. Set by layout core and cannot be used in update
+ * @prop {number} right - Right edge of the item. Set by layout core and cannot be used in update
+ * @prop {number} bottom - Bottom edge of the item. Set by layout core and cannot be used in update
  */
 
 // The layout service is very self explanatory.  It's responsible for the layout within a chart.

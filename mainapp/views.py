@@ -1,5 +1,5 @@
 from django.contrib.auth import logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.views.generic import View
@@ -108,3 +108,24 @@ class GeneratePdfForBill(View):
 
         # rendering the template
         return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+def bill_history(request, **kwargs):
+    return render(request,'bill/index.html')
+
+
+@login_required(login_url='login')
+def bill_data(request, **kwargs):
+    context = {}
+    context['bill'] = BillHistory.objects.all()
+    return render(request, 'bill/table_data.html',context=context)
+
+
+def update(request, bill_id):
+    bill = BillHistory.objects.get(id=bill_id)
+    bill.status = 1
+    bill.save()
+    return JsonResponse({"success": True,})
+
+

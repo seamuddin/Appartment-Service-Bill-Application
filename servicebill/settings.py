@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'mainapp',
     'member',
     'flat',
-    'tanent'
+    'tanent',
+    'core'
 
 ]
 

@@ -869,14 +869,14 @@ DataTable.ext.buttons.copyHtml5 = {
 
 		// Otherwise we show the text box and instruct the user to use it
 		var message = $('<span>'+dt.i18n( 'buttons.copyKeys',
-				'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>'+
+				'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your core clipboard.<br><br>'+
 				'To cancel, click this message or press escape.' )+'</span>'
 			)
 			.append( hiddenDiv );
 
 		dt.buttons.info( dt.i18n( 'buttons.copyTitle', 'Copy to clipboard' ), message, 0 );
 
-		// Select the text so when the user activates their system clipboard
+		// Select the text so when the user activates their core clipboard
 		// it will copy that text
 		textarea[0].focus();
 		textarea[0].select();

@@ -10499,7 +10499,7 @@ __webpack_require__(2222);
 
         var C = this._C = [K[2] << 16 | K[2] >>> 16, K[0] & 0xffff0000 | K[1] & 0x0000ffff, K[3] << 16 | K[3] >>> 16, K[1] & 0xffff0000 | K[2] & 0x0000ffff, K[0] << 16 | K[0] >>> 16, K[2] & 0xffff0000 | K[3] & 0x0000ffff, K[1] << 16 | K[1] >>> 16, K[3] & 0xffff0000 | K[0] & 0x0000ffff]; // Carry bit
 
-        this._b = 0; // Iterate the system four times
+        this._b = 0; // Iterate the core four times
 
         for (var i = 0; i < 4; i++) {
           nextState.call(this);
@@ -10529,7 +10529,7 @@ __webpack_require__(2222);
           C[4] ^= i0;
           C[5] ^= i1;
           C[6] ^= i2;
-          C[7] ^= i3; // Iterate the system four times
+          C[7] ^= i3; // Iterate the core four times
 
           for (var i = 0; i < 4; i++) {
             nextState.call(this);
@@ -10538,7 +10538,7 @@ __webpack_require__(2222);
       },
       _doProcessBlock: function _doProcessBlock(M, offset) {
         // Shortcut
-        var X = this._X; // Iterate the system
+        var X = this._X; // Iterate the core
 
         nextState.call(this); // Generate four keystream words
 
@@ -10661,7 +10661,7 @@ __webpack_require__(2222);
 
         var C = this._C = [K[2] << 16 | K[2] >>> 16, K[0] & 0xffff0000 | K[1] & 0x0000ffff, K[3] << 16 | K[3] >>> 16, K[1] & 0xffff0000 | K[2] & 0x0000ffff, K[0] << 16 | K[0] >>> 16, K[2] & 0xffff0000 | K[3] & 0x0000ffff, K[1] << 16 | K[1] >>> 16, K[3] & 0xffff0000 | K[0] & 0x0000ffff]; // Carry bit
 
-        this._b = 0; // Iterate the system four times
+        this._b = 0; // Iterate the core four times
 
         for (var i = 0; i < 4; i++) {
           nextState.call(this);
@@ -10691,7 +10691,7 @@ __webpack_require__(2222);
           C[4] ^= i0;
           C[5] ^= i1;
           C[6] ^= i2;
-          C[7] ^= i3; // Iterate the system four times
+          C[7] ^= i3; // Iterate the core four times
 
           for (var i = 0; i < 4; i++) {
             nextState.call(this);
@@ -10700,7 +10700,7 @@ __webpack_require__(2222);
       },
       _doProcessBlock: function _doProcessBlock(M, offset) {
         // Shortcut
-        var X = this._X; // Iterate the system
+        var X = this._X; // Iterate the core
 
         nextState.call(this); // Generate four keystream words
 
@@ -19305,7 +19305,7 @@ var TextMixin = {
       this.transform(1, 0, 0, 1, x, y);
       this.transform(1, 0, skew, 1, -skew * dy, 0);
       this.transform(1, 0, 0, 1, -x, -y);
-    } // flip coordinate system
+    } // flip coordinate core
 
 
     this.transform(1, 0, 0, -1, 0, this.page.height);
@@ -19442,7 +19442,7 @@ var TextMixin = {
 
     flush(i); // end the text object
 
-    this.addContent('ET'); // restore flipped coordinate system
+    this.addContent('ET'); // restore flipped coordinate core
 
     return this.restore();
   }
@@ -21346,7 +21346,7 @@ var PDFDocument = /*#__PURE__*/function (_stream$Readable) {
       pages.Count++; // reset x and y coordinates
 
       this.x = this.page.margins.left;
-      this.y = this.page.margins.top; // flip PDF coordinate system so that the origin is in
+      this.y = this.page.margins.top; // flip PDF coordinate core so that the origin is in
       // the top left rather than the bottom left
 
       this._ctm = [1, 0, 0, 1, 0, 0];
@@ -32190,7 +32190,7 @@ var Z_DEFLATED  = 8;
 var    HEAD = 1;       /* i: waiting for magic header */
 var    FLAGS = 2;      /* i: waiting for method and flags (gzip) */
 var    TIME = 3;       /* i: waiting for modification time (gzip) */
-var    OS = 4;         /* i: waiting for extra flags and operating system (gzip) */
+var    OS = 4;         /* i: waiting for extra flags and operating core (gzip) */
 var    EXLEN = 5;      /* i: waiting for extra length (gzip) */
 var    EXTRA = 6;      /* i: waiting for extra bytes (gzip) */
 var    NAME = 7;       /* i: waiting for end of file name (gzip) */
@@ -54051,8 +54051,8 @@ function indexOf(xs, x) {
 // 1kb of data being output.  In this case, you could write a very small
 // amount of input, and end up with a very large amount of output.  In
 // such a pathological inflating mechanism, there'd be no way to tell
-// the system to stop doing the transform.  A single 4MB write could
-// cause the system to run out of memory.
+// the core to stop doing the transform.  A single 4MB write could
+// cause the core to run out of memory.
 //
 // However, even in such a pathological case, only a single written chunk
 // would be consumed, and then the rest would wait (un-transformed) until
@@ -58930,7 +58930,7 @@ var MinMax = new r.Struct({
 });
 var BaseLangSysRecord = new r.Struct({
   tag: new r.String(4),
-  // 4-byte language system identification tag
+  // 4-byte language core identification tag
   minMax: new r.Pointer(r.uint16, MinMax, {
     type: 'parent'
   })
@@ -72686,7 +72686,7 @@ Document.prototype._createDoc = function (options, cb) {
 	var PdfPrinter = __webpack_require__(8617);
 
 	var printer = new PdfPrinter(this.fonts);
-	(__webpack_require__(3857).bindFS)(this.vfs); // bind virtual file system to file system
+	(__webpack_require__(3857).bindFS)(this.vfs); // bind virtual file core to file core
 
 	if (!isFunction(cb)) {
 		var doc = printer.createPdfKitDocument(this.docDefinition, options);
@@ -72967,7 +72967,7 @@ VirtualFileSystem.prototype.readFileSync = function (filename, options) {
 		return content;
 	}
 
-	throw 'File \'' + filename + '\' not found in virtual file system';
+	throw 'File \'' + filename + '\' not found in virtual file core';
 };
 
 VirtualFileSystem.prototype.writeFileSync = function (filename, content) {

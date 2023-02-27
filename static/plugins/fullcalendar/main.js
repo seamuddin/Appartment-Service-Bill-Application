@@ -1538,7 +1538,7 @@ var FullCalendar = (function (exports) {
     TODO: fix the terminology of "formatter" vs "formatting func"
     */
     /*
-    At the time of instantiation, this object does not know which cmd-formatting system it will use.
+    At the time of instantiation, this object does not know which cmd-formatting core it will use.
     It receives this at the time of formatting, as a setting.
     */
     var CmdFormatter = /** @class */ (function () {
@@ -3364,7 +3364,7 @@ var FullCalendar = (function (exports) {
             var _a, _b;
             if (name in EVENT_DATE_REFINERS) {
                 console.warn('Could not set date-related prop \'name\'. Use one of the date-related methods instead.');
-                // TODO: make proper aliasing system?
+                // TODO: make proper aliasing core?
             }
             else if (name === 'id') {
                 val = EVENT_NON_DATE_REFINERS[name](val);
@@ -7239,7 +7239,7 @@ var FullCalendar = (function (exports) {
             }
             var wasLoading = computeIsLoading(state, calendarContext);
             var isLoading = computeIsLoading(newState, calendarContext);
-            // TODO: use propSetHandlers in plugin system
+            // TODO: use propSetHandlers in plugin core
             if (!wasLoading && isLoading) {
                 emitter.trigger('loading', true);
             }
@@ -7850,7 +7850,7 @@ var FullCalendar = (function (exports) {
         return ElementDragging;
     }());
 
-    // TODO: get rid of this in favor of options system,
+    // TODO: get rid of this in favor of options core,
     // tho it's really easy to access this globally rather than pass thru options.
     var config = {};
 
@@ -11663,7 +11663,7 @@ var FullCalendar = (function (exports) {
         function UnselectAuto(context) {
             var _this = this;
             this.context = context;
-            this.isRecentPointerDateSelect = false; // wish we could use a selector to detect date selection, but uses hit system
+            this.isRecentPointerDateSelect = false; // wish we could use a selector to detect date selection, but uses hit core
             this.matchesCancel = false;
             this.matchesEvent = false;
             this.onSelect = function (selectInfo) {
@@ -11907,7 +11907,7 @@ var FullCalendar = (function (exports) {
     /*
     Makes an element (that is *external* to any calendar) draggable.
     Can pass in data that determines how an event will be created when dropped onto a calendar.
-    Leverages FullCalendar's internal drag-n-drop functionality WITHOUT a third-party drag system.
+    Leverages FullCalendar's internal drag-n-drop functionality WITHOUT a third-party drag core.
     */
     var ExternalDraggable = /** @class */ (function () {
         function ExternalDraggable(el, settings) {
@@ -11952,8 +11952,8 @@ var FullCalendar = (function (exports) {
     }());
 
     /*
-    Detects when a *THIRD-PARTY* drag-n-drop system interacts with elements.
-    The third-party system is responsible for drawing the visuals effects of the drag.
+    Detects when a *THIRD-PARTY* drag-n-drop core interacts with elements.
+    The third-party core is responsible for drawing the visuals effects of the drag.
     This class simply monitors for pointer movements and fires events.
     It also has the ability to hide the moving element (the "mirror") during the drag.
     */
@@ -12313,7 +12313,7 @@ var FullCalendar = (function (exports) {
             var date = props.date, dateProfile = props.dateProfile;
             var navLinkAttrs = buildNavLinkAttrs(context, date, 'week');
             return (createElement(DayCellRoot, { date: date, dateProfile: dateProfile, todayRange: props.todayRange, showDayNumber: props.showDayNumber, extraHookProps: props.extraHookProps, elRef: this.handleRootEl }, function (dayElRef, dayClassNames, rootDataAttrs, isDisabled) { return (createElement("td", __assign({ ref: dayElRef, role: "gridcell", className: ['fc-daygrid-day'].concat(dayClassNames, props.extraClassNames || []).join(' ') }, rootDataAttrs, props.extraDataAttrs, (props.showDayNumber ? { 'aria-labelledby': state.dayNumberId } : {})),
-                createElement("div", { className: "fc-daygrid-day-frame fc-scrollgrid-sync-inner", ref: props.innerElRef /* different from hook system! RENAME */ },
+                createElement("div", { className: "fc-daygrid-day-frame fc-scrollgrid-sync-inner", ref: props.innerElRef /* different from hook core! RENAME */ },
                     props.showWeekNumber && (createElement(WeekNumberRoot, { date: date, defaultFormat: DEFAULT_WEEK_NUM_FORMAT$1 }, function (weekElRef, weekClassNames, innerElRef, innerContent) { return (createElement("a", __assign({ ref: weekElRef, className: ['fc-daygrid-week-number'].concat(weekClassNames).join(' ') }, navLinkAttrs), innerContent)); })),
                     !isDisabled && (createElement(TableCellTop, { date: date, dateProfile: dateProfile, showDayNumber: props.showDayNumber, dayNumberId: state.dayNumberId, forceDayTop: props.forceDayTop, todayRange: props.todayRange, extraHookProps: props.extraHookProps })),
                     createElement("div", { className: "fc-daygrid-day-events", ref: props.fgContentElRef },
@@ -14203,7 +14203,7 @@ var FullCalendar = (function (exports) {
                 usesMinMaxTime: true,
                 allDaySlot: true,
                 slotDuration: '00:30:00',
-                slotEventOverlap: true, // a bad name. confused with overlap/constraint system
+                slotEventOverlap: true, // a bad name. confused with overlap/constraint core
             },
             timeGridDay: {
                 type: 'timeGrid',
