@@ -15,6 +15,8 @@ class Member(models.Model):
     email = models.CharField(max_length=100)
     mobile = models.CharField(max_length=100)
     parmanent_address = models.CharField(max_length=100)
+    plot_no = models.CharField(max_length=100, default='')
+    profession = models.CharField(max_length=100, default='')
     nid = models.IntegerField()
 
     # def save(self, force_insert=False, force_update=False):

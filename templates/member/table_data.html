@@ -5,8 +5,10 @@
         <th>Name</th>
         <th>Email</th>
         <th>Mobile</th>
+        <th>Profession</th>
         <th>Address</th>
         <th>NID</th>
+        <th>Plot No</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -17,8 +19,10 @@
             <td>{{ member.name }}</td>
             <td>{{ member.email }}</td>
             <td>{{ member.mobile }}</td>
+            <td>{{ member.profession }}</td>
             <td>{{ member.parmanent_address }}</td>
             <td>{{ member.nid }}</td>
+            <td>{{ member.plot_no }}</td>
             <td class="text-center">
                 <span href="" class="p-2" onclick="delete_item('/member/delete/{{ member.id }}')"><i class="text-danger fas fa-trash-alt" ></i></span>
                 <span href="" onclick="edit_item('edit/{{ member.id }}')"><i class="fas fa-edit"></i></span>

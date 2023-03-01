@@ -35,6 +35,8 @@ def edit(request,member_id, **kwargs):
             member.mobile = request.POST.get('mobile')
             member.parmanent_address = request.POST.get('parmanent_address')
             member.nid = request.POST.get('nid')
+            member.plot_no = request.POST.get('plot_no')
+            member.profession = request.POST.get('profession')
             member.save()
             context = {}
             context['member'] = member
@@ -74,6 +76,8 @@ def add(request,**kwargs):
             member.mobile = request.POST.get('mobile')
             member.parmanent_address = request.POST.get('parmanent_address')
             member.nid = request.POST.get('nid')
+            member.plot_no = request.POST.get('plot_no')
+            member.profession = request.POST.get('profession')
             member.full_clean()
             member.save()
             return redirect('/member')

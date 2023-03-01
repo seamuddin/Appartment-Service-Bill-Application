@@ -3,6 +3,7 @@
     <tr>
         <th style="width: 10px">#</th>
         <th>Flat Number</th>
+        <th>Plot No</th>
         <th>Flat Size</th>
         <th>Owner</th>
         <th>Action</th>
@@ -13,6 +14,7 @@
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ flat.flat_no }}</td>
+            <td>{{ flat.owner.plot_no }}</td>
             <td>{{ flat.size }}</td>
             <td>{{ flat.owner.name }}</td>
             <td class="text-center">
